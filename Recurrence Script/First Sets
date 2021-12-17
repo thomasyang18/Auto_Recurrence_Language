@@ -1,0 +1,7 @@
+<S> := "fun", "print", \eps
+<program_list> := "fun", "print", \eps
+<print> := "print"
+<function> := fun
+<fun_name> := 'a'-'z'
+<param_list> := 'a'-'z'
+

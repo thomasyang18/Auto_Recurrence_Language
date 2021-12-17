@@ -1,0 +1,38 @@
+Idea is to allow any type of dynamic-programming type recurrence to be solved with a language without implementing DP yourself
+
+Types are all longs.
+Check for dependencies with cycle detection BEFORE DP is compiled, to make sure it's a correct recurrence
+
+Problems that are getting pushed back later:
+Modulo
+2D+ DP // CHECK
+More complex base cases, ex if all dp(x,0) = 1 kinda check?
+For loops // Summations and Products allowed
+grundy numbers
+Cycle check // Probably never going to happen
+
+Ideas to consider after: basic extra functions, doubles + bools,
+
+TODO:
+
+Create a grammar
+
+Implement parser
+
+Implement thing that interprets it
+
+Implement cycle detection
+
+Implement fluff
+
+TODO SIMPLE PARSER:
+
+//Create a grammar
+
+//Implement parser
+
+//Implement thing that interprets it
+
+Implement cycle detection - FUCK CYCLE DETECTION JUST WRITE UR CODE BETTER
+
+Implement fluff

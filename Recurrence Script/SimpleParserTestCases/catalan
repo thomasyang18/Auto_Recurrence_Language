@@ -1,0 +1,5 @@
+fun catalan(i) =
+	map(1)->1;
+	map(0)->1;
+	return sum(j, i, catalan(j) * catalan(i-j-1));
+;;

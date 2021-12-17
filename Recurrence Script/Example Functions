@@ -1,0 +1,111 @@
+static long fib(int n){
+	if (n==0) return 0;
+	if (n==1) return 1;
+	if (!memo[n]){
+		ans[n] = 0;
+		ans[n] = fib(n-1) + fib(n-2);
+		memo[n] = true;
+	}
+	return ans[n];
+}
+
+
+fun fib(n) = 
+	base{
+		map(0)->1;
+		map(1)->1;
+	}
+	return fib(n-1)+fib(n-2)
+;;
+
+-------------------------------------------------
+
+static long fac(int n){
+	if (n==0) return 1;
+	if (!memo[n]){
+		ans[n] = n*fac(n-1);
+		memo[n] = true;
+	}
+	return ans[n];
+}
+
+fun fac(n) = 
+	base{
+		map(0)->1;
+	}
+	return n*fac(n-1)
+;;
+
+--------------------------------------------------
+
+static long ncr(int n, int k){
+	if (n==k) return 1;
+	if (k == 0) return 1;
+	if (!memo[n][k]){
+		ans[n][k] = ncr(n-1, k) + ncr(n-1, k-1);
+		memo[n][k]= true;
+	}
+	return ans[n][k];
+}
+
+fun ncr(n, k) =
+	base{
+		map(_,k) -> 1;
+	}
+	if (n==k) return 1;
+	return ncr(n-1,k) + ncr(n-1,k-1);
+;;
+
+---------------------------------------------------
+
+static long sqnim(int i) {
+	if (i == 0) return 0;
+	if (!memo[i]) {
+		HashSet<Long> hs = new HashSet<Long>();
+		long mex = 0;
+		for (int j = 1; i-j*j >= 0; j++) hs.add(sqnim(i-j*j));
+		while (hs.contains(mex))mex++;
+		ans[i] = mex;
+		memo[i] = true;
+	}
+	return ans[i];
+}
+
+// Idea is to allow one local set for grundy which is important for DP.
+// try not to have too much shit in a scripting language ideally
+
+fun sqnim(i) using grundy =
+	base{
+		map(0)->0;
+	}
+	for (j = 1; i-j*j>=0; j++) set.add(sqnim(i-j*j));
+	return set.mex;
+;;
+
+----------------------------------------------
+
+
+static long catalan(int i) {
+	if (i == 0) return 1;
+	if (i==1) return 1;
+	if (!memo[i]) {
+		ans[i] = 0;
+		for (int j = 0; j < i; j++) {
+			ans[i] += catalan(j)*catalan(i-j-1);
+		}
+		memo[i] = true;
+	}
+	return ans[i];
+}
+
+fun catalan(i) =
+	base{
+		map(1)->1;
+		map(0)->1;
+	}
+	val = 0;
+	for (j = 0; j < i; j++){
+		val += catalan(j) * catalan(i-j-1);
+	}
+	return val;
+;;

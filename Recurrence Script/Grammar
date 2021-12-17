@@ -1,0 +1,44 @@
+Terminals: fun, if, <,=,>, a-z, '(', ')', map, '0'-'9', *-+/=|&, ;, ;;, .
+
+
+<S> := <program_list>
+<program_list> := <function><program_list> | <print><program_list> | \eps
+<print> := print <expr>;;
+
+<function> := fun <fun_name>(<param>) = <fun_body>;;
+<fun_name> := <var_begin>
+<param_list> := <param>,<param_list> | \eps
+<param> := <var_begin>
+
+<fun_body> := <base><body>
+<base> := base{<map_list>}
+<map_list> := <map><map_list> | \eps
+<map> := (<param>)-><expr>;
+
+<body> := <instruction><body> | <return_statement> | \eps
+<instruction> := <if_statement> | <assign_statement>
+<return_statement> := return <expr>;
+<if_statement> := if (<condition>) {<body>} | if(<condition>) <instruction> | if(<condition>) <return_statement>
+<assign_statement> := <var_begin> = <expr>;
+<expr> := 
+ (<expr>) |
+ <expr> * <expr> |
+ <expr> + <expr> |
+ <expr> - <expr> |
+ <expr> / <expr> |
+ <expr> ^ <expr> |
+ <expr> | <expr> |
+ <expr> & <expr> |
+ <var_begin> |
+ <number_begin> 
+
+<number_begin> := <digit><number> 
+<number> := <digit><number> | \eps 
+
+<var_begin> := <letter><var> 
+<var> := <letter><var> | <digit><var> | \eps
+<letter> := 'a'-'z' (no uppercase)
+<digit> := '0'-'9'
+
+Notes:
+fun_name and var_name are different although they're literally the same, because I want to do something with distinguishing I think
