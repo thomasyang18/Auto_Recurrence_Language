@@ -20,6 +20,13 @@ public class Parser {
 		program_list();
 		
 	}
+
+	public Parser(String plainText, int mode){
+		// if there is a mode, then make that mode the mode thing
+		u = new Util(plainText, mode);
+		program_list();
+	}
+
 	// Beginning of Expression Parsing
 	
 	private char letter() {

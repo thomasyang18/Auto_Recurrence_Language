@@ -15,7 +15,17 @@ public class Util {
 	
 	public char[] inputString;
 	public int toki = 0; // token index
-		
+
+	public Util(String inStr, int mode){
+		StringBuilder inputBuilder = new StringBuilder();
+		// mode just means that the input is a string
+		char[] delimiters = {' ', '\n', 10, 13, 9}; // Numbers are guesses at enter
+		outer: for (char ch: inStr.toCharArray()) {
+			for (char delim: delimiters) if (ch == delim) continue outer;
+			inputBuilder.append(ch);
+		}
+		inputString = inputBuilder.toString().toCharArray();
+	}
 	public Util(String inputFile) {
 		StringBuilder inputBuilder = new StringBuilder();
 		try {
