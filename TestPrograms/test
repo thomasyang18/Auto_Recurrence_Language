@@ -1,0 +1,7 @@
+fun fib(fun) = 
+	map(0) -> 1;
+	map(1) -> 1;
+	return fib(fun-1) + fib(fun-2);;
+	
+print fib(7);;
+

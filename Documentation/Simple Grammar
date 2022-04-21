@@ -1,0 +1,50 @@
+Terminals: fun, a-z, '(', ')', map, '0'-'9', *-+/=|&, ;, ;;
+
+<S> := <program_list>
+<program_list> := <function><program_list> | <print><program_list>  \eps
+
+<print> := print <expr>;;
+
+<function> := fun <var_begin>(<var_list>) = <fun_body>;;
+
+<var_list> := <var_begin><var_list1> | \eps
+<var_list1> := 
+ ,<var_begin><var_list1> | \eps
+
+<expr_list> := <expr><expr_list1>
+<expr_list1> := 
+ ,<expr_list><expr_list1> | \eps
+
+<fun_body> := <map_list><return_statement>
+<map_list> := <map><map_list> | \eps
+<map> := map(<number_list>)-><number_begin>;
+<return_statement> := return <expr>;
+
+<expr> := <term><expr1>
+<expr1> := 
+ - <term> <expr1> |
+ + <term> <expr1> |
+ /eps
+ 
+<term> := <value><term1>
+<term1> :=
+ * <value><term1> |
+ / <value><term1> |
+ /eps
+ 
+<value> :=
+ <number_begin> | <var_begin> | <summation> | <product>
+ 
+<summation> 
+
+<number_begin> := <digit><number> 
+<number> := <digit><number> | \eps 
+
+<var_begin> := <letter><var>
+<var> := <letter><var> | <digit><var> | \eps
+<letter> := 'a'-'z' (no uppercase)
+<digit> := '0'-'9'
+
+Notes:
+fun_name and var_name are different although they're literally the same, because I want to do something with distinguishing I think
+You can distinguish them within the code
